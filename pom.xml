@@ -22,10 +22,13 @@
     </scm>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.7</java.version>
         <mybatis.plus.version>2.1.0.RELEASE</mybatis.plus.version>
         <mybatis.plus.start.version>1.0.0</mybatis.plus.start.version>
         <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
         <maven-bundle-plugin.version>3.3.0</maven-bundle-plugin.version>
+        <maven.compiler.version>2.3.2</maven.compiler.version>
     </properties>
 
     <dependencyManagement>
@@ -57,6 +60,16 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
             <!-- workaround for https://github.com/mybatis/spring-boot-starter/issues/127 -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
