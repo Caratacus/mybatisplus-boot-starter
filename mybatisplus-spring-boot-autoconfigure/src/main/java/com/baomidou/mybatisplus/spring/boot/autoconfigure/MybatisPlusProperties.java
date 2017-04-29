@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.mybatis.spring.boot.autoconfigure;
+package com.baomidou.mybatisplus.spring.boot.autoconfigure;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,14 +21,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ExecutorType;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
+
+import com.baomidou.mybatisplus.MybatisConfiguration;
 
 /**
  * Configuration properties for MyBatis.
@@ -36,10 +36,10 @@ import org.springframework.core.io.support.ResourcePatternResolver;
  * @author Eddú Meléndez
  * @author Kazuki Shimizu
  */
-@ConfigurationProperties(prefix = MybatisProperties.MYBATIS_PREFIX)
-public class MybatisProperties {
+@ConfigurationProperties(prefix = MybatisPlusProperties.MYBATIS_PREFIX)
+public class MybatisPlusProperties {
 
-  public static final String MYBATIS_PREFIX = "mybatis";
+  public static final String MYBATIS_PREFIX = "mybatis-plus";
 
   /**
    * Location of MyBatis xml config file.
@@ -81,7 +81,7 @@ public class MybatisProperties {
    * is specified, this property is not used.
    */
   @NestedConfigurationProperty
-  private Configuration configuration;
+  private MybatisConfiguration configuration;
 
   /**
    * @since 1.1.0
@@ -161,11 +161,11 @@ public class MybatisProperties {
     this.configurationProperties = configurationProperties;
   }
 
-  public Configuration getConfiguration() {
+  public MybatisConfiguration getConfiguration() {
     return configuration;
   }
 
-  public void setConfiguration(Configuration configuration) {
+  public void setConfiguration(MybatisConfiguration configuration) {
     this.configuration = configuration;
   }
 

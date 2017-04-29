@@ -13,20 +13,22 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.mybatis.spring.boot.autoconfigure.repository;
+package com.baomidou.mybatisplus.spring.boot.autoconfigure;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.boot.autoconfigure.domain.City;
+import org.apache.ibatis.session.Configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
+/**
+ * Callback interface that can be customized a {@link Configuration} object generated on auto-configuration.
+ *
+ * @author Kazuki Shimizu
+ * @since 1.2.1
+ */
+public interface ConfigurationCustomizer {
 
-public class CityMapperImpl {
-
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
-
-	public City findById(long id) {
-		return this.sqlSessionTemplate.selectOne("selectCityById", id);
-	}
+  /**
+   * Customize the given a {@link Configuration} object.
+   * @param configuration the configuration object to customize
+   */
+  void customize(Configuration configuration);
 
 }

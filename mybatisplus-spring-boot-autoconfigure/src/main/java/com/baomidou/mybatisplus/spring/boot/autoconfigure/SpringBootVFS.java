@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.mybatis.spring.boot.autoconfigure;
+package com.baomidou.mybatisplus.spring.boot.autoconfigure;
 
 import java.io.IOException;
 import java.net.URI;

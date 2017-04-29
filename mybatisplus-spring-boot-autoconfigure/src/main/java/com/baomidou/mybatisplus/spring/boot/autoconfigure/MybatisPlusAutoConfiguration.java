@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.mybatis.spring.boot.autoconfigure;
+package com.baomidou.mybatisplus.spring.boot.autoconfigure;
 
 import java.util.List;
 
@@ -23,16 +23,13 @@ import javax.sql.DataSource;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.mapping.DatabaseIdProvider;
 import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.mapper.ClassPathMapperScanner;
 import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -58,6 +55,9 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import com.baomidou.mybatisplus.MybatisConfiguration;
+import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
+
 /**
  * {@link EnableAutoConfiguration Auto-Configuration} for Mybatis. Contributes a
  * {@link SqlSessionFactory} and a {@link SqlSessionTemplate}.
@@ -73,15 +73,15 @@ import org.springframework.util.StringUtils;
  * @author Eduardo Macarrón
  */
 @org.springframework.context.annotation.Configuration
-@ConditionalOnClass({ SqlSessionFactory.class, SqlSessionFactoryBean.class })
+@ConditionalOnClass({ SqlSessionFactory.class, MybatisSqlSessionFactoryBean.class })
 @ConditionalOnBean(DataSource.class)
-@EnableConfigurationProperties(MybatisProperties.class)
+@EnableConfigurationProperties(MybatisPlusProperties.class)
 @AutoConfigureAfter(DataSourceAutoConfiguration.class)
-public class MybatisAutoConfiguration {
+public class MybatisPlusAutoConfiguration {
 
-  private static final Logger logger = LoggerFactory.getLogger(MybatisAutoConfiguration.class);
+  private static final Logger logger = LoggerFactory.getLogger(MybatisPlusAutoConfiguration.class);
 
-  private final MybatisProperties properties;
+  private final MybatisPlusProperties properties;
 
   private final Interceptor[] interceptors;
 
@@ -91,11 +91,11 @@ public class MybatisAutoConfiguration {
 
   private final List<ConfigurationCustomizer> configurationCustomizers;
 
-  public MybatisAutoConfiguration(MybatisProperties properties,
-                                  ObjectProvider<Interceptor[]> interceptorsProvider,
-                                  ResourceLoader resourceLoader,
-                                  ObjectProvider<DatabaseIdProvider> databaseIdProvider,
-                                  ObjectProvider<List<ConfigurationCustomizer>> configurationCustomizersProvider) {
+  public MybatisPlusAutoConfiguration(MybatisPlusProperties properties,
+                                      ObjectProvider<Interceptor[]> interceptorsProvider,
+                                      ResourceLoader resourceLoader,
+                                      ObjectProvider<DatabaseIdProvider> databaseIdProvider,
+                                      ObjectProvider<List<ConfigurationCustomizer>> configurationCustomizersProvider) {
     this.properties = properties;
     this.interceptors = interceptorsProvider.getIfAvailable();
     this.resourceLoader = resourceLoader;
@@ -115,15 +115,15 @@ public class MybatisAutoConfiguration {
   @Bean
   @ConditionalOnMissingBean
   public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-    SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
+    MybatisSqlSessionFactoryBean factory = new MybatisSqlSessionFactoryBean();
     factory.setDataSource(dataSource);
     factory.setVfs(SpringBootVFS.class);
     if (StringUtils.hasText(this.properties.getConfigLocation())) {
       factory.setConfigLocation(this.resourceLoader.getResource(this.properties.getConfigLocation()));
     }
-    Configuration configuration = this.properties.getConfiguration();
+    MybatisConfiguration configuration = this.properties.getConfiguration();
     if (configuration == null && !StringUtils.hasText(this.properties.getConfigLocation())) {
-      configuration = new Configuration();
+      configuration = new MybatisConfiguration();
     }
     if (configuration != null && !CollectionUtils.isEmpty(this.configurationCustomizers)) {
       for (ConfigurationCustomizer customizer : this.configurationCustomizers) {

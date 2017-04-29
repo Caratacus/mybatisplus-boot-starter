@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.baomidou</groupId>
-		<artifactId>mybatis-plus-spring-boot</artifactId>
+		<artifactId>mybatisplus-spring-boot</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	<artifactId>mybatis-plus-spring-boot-autoconfigure</artifactId>
-	<name>mybatis-plus-spring-boot-autoconfigure</name>
+	<artifactId>mybatisplus-spring-boot-autoconfigure</artifactId>
+	<name>mybatisplus-spring-boot-autoconfigure</name>
 
 	<dependencies>
 		<!-- Compile dependencies -->
