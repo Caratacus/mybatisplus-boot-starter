@@ -14,7 +14,6 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
 import com.baomidou.mybatisplus.MybatisConfiguration;
-import com.baomidou.mybatisplus.entity.GlobalConfiguration;
 
 /**
  * Configuration properties for MyBatis.
@@ -64,7 +63,8 @@ public class MybatisPlusProperties {
     /**
      * Externalized properties for MyBatis configuration.
      */
-    private GlobalConfiguration globalConfiguration;
+    @NestedConfigurationProperty
+    private GlobalConfig globalConfig;
 
     /**
      * A Configuration object for customize default settings. If {@link #configLocation}
@@ -127,14 +127,6 @@ public class MybatisPlusProperties {
         this.executorType = executorType;
     }
 
-    public GlobalConfiguration getGlobalConfiguration() {
-        return globalConfiguration;
-    }
-
-    public void setGlobalConfiguration(GlobalConfiguration globalConfiguration) {
-        this.globalConfiguration = globalConfiguration;
-    }
-
     /**
      * @since 1.2.0
      */
@@ -171,5 +163,13 @@ public class MybatisPlusProperties {
             }
         }
         return resources.toArray(new Resource[resources.size()]);
+    }
+
+    public GlobalConfig getGlobalConfig() {
+        return globalConfig;
+    }
+
+    public void setGlobalConfig(GlobalConfig globalConfig) {
+        this.globalConfig = globalConfig;
     }
 }

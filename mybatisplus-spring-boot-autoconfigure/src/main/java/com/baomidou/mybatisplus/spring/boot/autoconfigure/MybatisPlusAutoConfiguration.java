@@ -134,8 +134,8 @@ public class MybatisPlusAutoConfiguration {
         if (!ObjectUtils.isEmpty(this.properties.resolveMapperLocations())) {
             factory.setMapperLocations(this.properties.resolveMapperLocations());
         }
-        if (!ObjectUtils.isEmpty(this.properties.getGlobalConfiguration())) {
-            factory.setGlobalConfig(this.properties.getGlobalConfiguration());
+        if (!ObjectUtils.isEmpty(this.properties.getGlobalConfig())) {
+            factory.setGlobalConfig(this.properties.getGlobalConfig().convertGlobalConfiguration());
         }
         return factory.getObject();
     }
