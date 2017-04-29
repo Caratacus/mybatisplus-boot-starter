@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.baomidou</groupId>
-    <artifactId>mybatisplus-spring-boot</artifactId>
+    <artifactId>mybatisplus-boot-starter</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
@@ -11,7 +11,7 @@
     <description>Spring Boot Support for MyBatisPlus</description>
 
     <modules>
-        <module>mybatisplus-spring-boot-autoconfigure</module>
+        <module>mybatisplus-spring-boot-starter</module>
     </modules>
 
     <scm>
