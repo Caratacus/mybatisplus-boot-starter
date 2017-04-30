@@ -1,4 +1,4 @@
-package com.baomidou.mybatisplus.spring.boot.autoconfigure;
+package com.baomidou.mybatisplus.spring.boot.starter;
 
 import org.apache.ibatis.session.Configuration;
 

@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.baomidou.mybatisplus.spring.boot.autoconfigure;
+package com.baomidou.mybatisplus.spring.boot.starter;
 
 import com.baomidou.mybatisplus.entity.GlobalConfiguration;
 import com.baomidou.mybatisplus.mapper.ISqlInjector;
@@ -42,8 +42,8 @@ public class GlobalConfig {
     private String metaObjectHandler;
     // 字段验证策略
     private Integer fieldStrategy;
-    // 是否刷新mapper
-    private Boolean isRefresh;
+    // 方便调试
+    private Boolean refreshMapper;
     // 是否自动获取DBType
     private Boolean isAutoSetDbType;
     // 是否大写命名
@@ -99,14 +99,6 @@ public class GlobalConfig {
         this.fieldStrategy = fieldStrategy;
     }
 
-    public Boolean getRefresh() {
-        return isRefresh;
-    }
-
-    public void setRefresh(Boolean refresh) {
-        isRefresh = refresh;
-    }
-
     public Boolean getAutoSetDbType() {
         return isAutoSetDbType;
     }
@@ -131,6 +123,13 @@ public class GlobalConfig {
         this.identifierQuote = identifierQuote;
     }
 
+    public Boolean getRefreshMapper() {
+        return refreshMapper;
+    }
+
+    public void setRefreshMapper(Boolean refreshMapper) {
+        this.refreshMapper = refreshMapper;
+    }
 
     public GlobalConfiguration convertGlobalConfiguration() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         GlobalConfiguration globalConfiguration = new GlobalConfiguration();
@@ -158,8 +157,8 @@ public class GlobalConfig {
         if (StringUtils.checkValNotNull(this.getFieldStrategy())) {
             globalConfiguration.setFieldStrategy(this.getFieldStrategy());
         }
-        if (StringUtils.checkValNotNull(this.getRefresh())) {
-            globalConfiguration.setRefresh(this.getRefresh());
+        if (StringUtils.checkValNotNull(this.getRefreshMapper())) {
+            globalConfiguration.setRefresh(this.getRefreshMapper());
         }
         if (StringUtils.checkValNotNull(this.getAutoSetDbType())) {
             globalConfiguration.setAutoSetDbType(this.getAutoSetDbType());
