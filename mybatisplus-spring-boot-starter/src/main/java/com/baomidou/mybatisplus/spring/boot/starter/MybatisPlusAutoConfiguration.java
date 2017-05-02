@@ -58,6 +58,7 @@ import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
  * @author Kazuki Shimizu
  * @author Eduardo Macarrón
  */
+@SuppressWarnings("ConstantConditions")
 @org.springframework.context.annotation.Configuration
 @ConditionalOnClass({SqlSessionFactory.class, MybatisSqlSessionFactoryBean.class})
 @ConditionalOnBean(DataSource.class)
