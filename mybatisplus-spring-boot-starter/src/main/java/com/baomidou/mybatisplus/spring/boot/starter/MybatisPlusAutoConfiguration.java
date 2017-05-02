@@ -41,6 +41,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import com.baomidou.mybatisplus.MybatisConfiguration;
+import com.baomidou.mybatisplus.MybatisXMLLanguageDriver;
 import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
 
 /**
@@ -115,6 +116,7 @@ public class MybatisPlusAutoConfiguration {
                 customizer.customize(configuration);
             }
         }
+        configuration.setDefaultScriptingLanguage(MybatisXMLLanguageDriver.class);
         factory.setConfiguration(configuration);
         if (this.properties.getConfigurationProperties() != null) {
             factory.setConfigurationProperties(this.properties.getConfigurationProperties());
