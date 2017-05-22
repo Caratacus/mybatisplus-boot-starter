@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.baomidou</groupId>
         <artifactId>mybatisplus-boot-starter</artifactId>
-        <version>1.0.0</version>
+        <version>2.0.0</version>
     </parent>
     <artifactId>mybatisplus-spring-boot-starter</artifactId>
     <name>mybatisplus-spring-boot-starter</name>
@@ -18,8 +18,8 @@
         </dependency>
         <!-- Optional dependencies -->
         <dependency>
-            <groupId>com.app</groupId>
-            <artifactId>app-mybatis-plus</artifactId>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-mini</artifactId>
         </dependency>
         <!-- @ConfigurationProperties annotation processing (metadata for IDEs) -->
         <dependency>

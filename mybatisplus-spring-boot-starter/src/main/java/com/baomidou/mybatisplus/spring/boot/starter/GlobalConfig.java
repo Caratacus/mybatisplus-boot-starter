@@ -16,6 +16,8 @@
 package com.baomidou.mybatisplus.spring.boot.starter;
 
 import com.baomidou.mybatisplus.entity.GlobalConfiguration;
+import com.baomidou.mybatisplus.enums.FieldStrategy;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.mapper.ISqlInjector;
 import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
 import com.baomidou.mybatisplus.toolkit.StringUtils;
@@ -30,10 +32,8 @@ import com.baomidou.mybatisplus.toolkit.StringUtils;
  */
 public class GlobalConfig {
 
-    // 数据库类型
-    private String dbType;
     // 主键类型
-    private Integer idType;
+    private IdType idType;
     // 表名、字段名、是否使用下划线命名
     private Boolean dbColumnUnderline;
     // SQL注入器
@@ -41,29 +41,19 @@ public class GlobalConfig {
     // 元对象字段填充控制器
     private String metaObjectHandler;
     // 字段验证策略
-    private Integer fieldStrategy;
+    private FieldStrategy fieldStrategy;
     // 方便调试
     private Boolean refreshMapper;
-    // 是否自动获取DBType
-    private Boolean isAutoSetDbType;
     // 是否大写命名
     private Boolean isCapitalMode;
     // 标识符
     private String identifierQuote;
 
-    public String getDbType() {
-        return dbType;
-    }
-
-    public void setDbType(String dbType) {
-        this.dbType = dbType;
-    }
-
-    public Integer getIdType() {
+    public IdType getIdType() {
         return idType;
     }
 
-    public void setIdType(Integer idType) {
+    public void setIdType(IdType idType) {
         this.idType = idType;
     }
 
@@ -91,21 +81,14 @@ public class GlobalConfig {
         this.metaObjectHandler = metaObjectHandler;
     }
 
-    public Integer getFieldStrategy() {
+    public FieldStrategy getFieldStrategy() {
         return fieldStrategy;
     }
 
-    public void setFieldStrategy(Integer fieldStrategy) {
+    public void setFieldStrategy(FieldStrategy fieldStrategy) {
         this.fieldStrategy = fieldStrategy;
     }
 
-    public Boolean getAutoSetDbType() {
-        return isAutoSetDbType;
-    }
-
-    public void setAutoSetDbType(Boolean autoSetDbType) {
-        isAutoSetDbType = autoSetDbType;
-    }
 
     public Boolean getCapitalMode() {
         return isCapitalMode;
@@ -133,9 +116,6 @@ public class GlobalConfig {
 
     public GlobalConfiguration convertGlobalConfiguration() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         GlobalConfiguration globalConfiguration = new GlobalConfiguration();
-        if (StringUtils.isNotEmpty(this.getDbType())) {
-            globalConfiguration.setDbType(this.getDbType());
-        }
         if (StringUtils.isNotEmpty(this.getIdentifierQuote())) {
             globalConfiguration.setIdentifierQuote(this.getIdentifierQuote());
         }
@@ -149,19 +129,16 @@ public class GlobalConfig {
         }
 
         if (StringUtils.checkValNotNull(this.getIdType())) {
-            globalConfiguration.setIdType(this.getIdType());
+            globalConfiguration.setIdType(this.getIdType().name());
         }
         if (StringUtils.checkValNotNull(this.getDbColumnUnderline())) {
             globalConfiguration.setDbColumnUnderline(this.getDbColumnUnderline());
         }
         if (StringUtils.checkValNotNull(this.getFieldStrategy())) {
-            globalConfiguration.setFieldStrategy(this.getFieldStrategy());
+            globalConfiguration.setFieldStrategy(this.getFieldStrategy().name());
         }
         if (StringUtils.checkValNotNull(this.getRefreshMapper())) {
             globalConfiguration.setRefresh(this.getRefreshMapper());
-        }
-        if (StringUtils.checkValNotNull(this.getAutoSetDbType())) {
-            globalConfiguration.setAutoSetDbType(this.getAutoSetDbType());
         }
         if (StringUtils.checkValNotNull(this.getCapitalMode())) {
             globalConfiguration.setCapitalMode(this.getCapitalMode());
