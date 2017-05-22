@@ -10,6 +10,20 @@
     <artifactId>mybatisplus-spring-boot-starter</artifactId>
     <name>mybatisplus-spring-boot-starter</name>
 
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>releases</name>
+            <url>http://119.57.88.47:18081/nexus/content/repositories/releases</url>
+            <uniqueVersion>true</uniqueVersion>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>snapshots</name>
+            <url>http://119.57.88.47:18081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
         <!-- Compile dependencies -->
         <dependency>
